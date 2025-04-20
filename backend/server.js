@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // process.env.FRONTEND_URL || "http://localhost:3000" ||, // Use env variable
+    origin: process.env.FRONTEND_URL, // process.env.FRONTEND_URL || "http://localhost:3000" ||, // Use env variable
     methods: ["GET", "POST"],
   },
 });
@@ -38,11 +38,11 @@ io.use(async (socket, next) => {
     const verifiedToken = await verifyToken(token, {
       jwtKey: process.env.CLERK_JWT_KEY,
       authorizedParties: [
-        // process.env.FRONTEND_URL ||
+        process.env.FRONTEND_URL,
         //   "http://localhost:3000" ||
         //   "http://192.168.137.1:3000",
         //"api.example.com",
-        "http://localhost:3000",
+        //"http://localhost:3000",//
       ],
     });
 
