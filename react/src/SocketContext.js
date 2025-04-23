@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }) => {
       }
 
       const token = await getToken(); // Get Clerk token
-      const newSocket = io("http://localhost:5000/", {
+      const newSocket = io("https://hrms-backend-jhw9.onrender.com", {
         auth: { token },
       });
 
